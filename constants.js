@@ -1,3 +1,5 @@
+import { Dimensions } from 'react-native';
+
 
 export const IMAGE_PATHS = {
     casinoImage: require("./assets/head_photos/karo.jpg"),
@@ -7,4 +9,8 @@ export const IMAGE_PATHS = {
     starbucksImage: require("./assets/head_photos/starbucks.jpg"),
 };
 
-export default IMAGE_PATHS;
+export let field_width = Dimensions.get('window').width;
+export let field_height = Dimensions.get('window').height;
+
+
+export default {IMAGE_PATHS, field_height, field_width};

@@ -14,7 +14,7 @@ CODING RESOURCES:
 */
 
 import React from "react";
-import { ScrollView, Text, View, Image } from "react-native";
+import { ScrollView, Text, View, Image, TouchableOpacity } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import { TableView, Section, Cell } from "react-native-tableview-simple";
@@ -33,18 +33,40 @@ const HomescreenCell = ({ navigation, ...props }) => (
       })
     }
   >
-    {/* Add the Image component with the source */}
     <Image source={props.img} style={styles.image} />
     <View style={styles.additionalInfo}>
-      <Text style={styles.additionalInfoText}>{props.delivery_time}</Text>
-      <Text style={styles.additionalInfoText}>{props.type}</Text>
-      <Text style={styles.additionalInfoText}>{props.food}</Text>
-      <Text style={styles.additionalInfoText}>{props.pricing}</Text>
-      {/* Add more information as needed */}
+      <View style={styles.additionalInfoCol}>
+        <Text style={styles.additionalInfoText}>{props.type}</Text>
+        <Text style={styles.additionalInfoText}>{props.food}</Text>
+      </View>
+      <View style={styles.restaurant_badges}>
+        <View style={styles.badge}>
+          <Text style={styles.additionalInfoTextBadge}>{props.pricing}</Text>
+        </View>
+        <View style={styles.badge}>
+          <Text style={{...styles.additionalInfoTextBadge, color: "green"}}>{props.delivery_time}</Text>
+          </View>
+      </View>  
+
     </View>
   </Cell>
 );
 
+const FoodInformationScreen = ({ route }) => {
+  const { title, price, calories, healthIndex } = route.params;
+
+  return (
+    <View style={styles.menu_container}>
+      <ScrollView>
+        <Text style={styles.additionalInfoText}>Title: {title}</Text>
+        <Text style={styles.additionalInfoText}>Price: ${price}</Text>
+        <Text style={styles.additionalInfoText}>Calories: {calories}</Text>
+        <Text style={styles.additionalInfoText}>Health Index: {healthIndex}</Text>
+        {/* Add more information as needed */}
+      </ScrollView>
+    </View>
+  );
+};
 
 const RestaurantsScreen = ({ navigation }) => (
   <View style={styles.restaurants_container}>
@@ -61,7 +83,7 @@ const RestaurantsScreen = ({ navigation }) => (
   </View>
 );
 
-const MenuScreen = ({ route }) => {
+const MenuScreen = ({ route, navigation }) => {
   const { items } = route.params;
 
   return (
@@ -71,7 +93,19 @@ const MenuScreen = ({ route }) => {
           {items.map((category, index) => (
             <Section key={index} header={category.category}>
               {category.items.map((item, itemIndex) => (
-                <Cell key={itemIndex} title={item.title} />
+                <TouchableOpacity
+                  key={itemIndex}
+                  onPress={() =>
+                    navigation.navigate("Food Information", {
+                      title: item.title,
+                      price: item.price || 0,
+                      calories: item.calories || 0,
+                      healthIndex: item.healthIndex || "N/A",
+                    })
+                  }
+                >
+                  <Cell title={item.title} />
+                </TouchableOpacity>
               ))}
             </Section>
           ))}
@@ -81,9 +115,6 @@ const MenuScreen = ({ route }) => {
   );
 };
 
-// const DishScreen = ({}) => {
-
-// };
 
 export default function App() {
   return (
@@ -91,6 +122,7 @@ export default function App() {
       <Stack.Navigator>
         <Stack.Screen name="Restaurants" component={RestaurantsScreen} />
         <Stack.Screen name="Menu" component={MenuScreen} />
+        <Stack.Screen name="Food Information" component={FoodInformationScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );
