@@ -81,6 +81,10 @@ const MenuScreen = ({ route }) => {
   );
 };
 
+// const DishScreen = ({}) => {
+
+// };
+
 export default function App() {
   return (
     <NavigationContainer>
