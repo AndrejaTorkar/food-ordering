@@ -10,7 +10,8 @@ CODING RESOURCES:
 * https://react.dev/learn/importing-and-exporting-components
 * https://github.com/Purii/react-native-tableview-simple
 * https://legacy.reactjs.org/docs/components-and-props.html
-* 
+* https://colorhunt.co/palette/2b3499ff6c22ff9209ffd099
+*
 */
 
 import React from "react";
@@ -36,8 +37,12 @@ const HomescreenCell = ({ navigation, ...props }) => (
     <Image source={props.img} style={styles.image} />
     <View style={styles.additionalInfo}>
       <View style={styles.additionalInfoCol}>
-        <Text style={styles.additionalInfoText}>{props.type}</Text>
-        <Text style={styles.additionalInfoText}>{props.food}</Text>
+        <View style={styles.additionalInfoBadge}>
+          <Text style={styles.additionalInfoText}>{props.type}</Text>
+        </View>
+        <View style={styles.additionalInfoBadge}>
+          <Text style={styles.additionalInfoText}>{props.food}</Text>
+        </View>
       </View>
       <View style={styles.restaurant_badges}>
         <View style={styles.badge}>

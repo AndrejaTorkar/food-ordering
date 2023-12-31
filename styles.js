@@ -30,13 +30,16 @@ export const styles = StyleSheet.create({
     marginBottom: 10,
   },
 
+  // Pricing and delivery time column
   restaurant_badges: {
     flex: 1,
     flexDirection: "row",
     justifyContent: "center"
   },
 
+  // For pricing and delivery time
   badge: {
+    flex: 1,
     borderColor: "#BBB",
     borderWidth: 2,
     borderRadius: field_height * 0.02,
@@ -45,19 +48,52 @@ export const styles = StyleSheet.create({
     alignContent: "center"
   },
 
+  // For restaurant's additional info
   additionalInfoText: {
     fontSize: field_width * 0.04,
-    color: "#888",
+    color: "#555",
+    color: "white",
+    textAlign: "center"
+
   },
 
+  // Additional info background
+  additionalInfoBadge: {
+    margin: 2,
+    backgroundColor: "#6F74CC",
+    width: field_width * 0.3,
+    borderRadius: 5,
+  },
+
+  // Text for pricing and delivery time
   additionalInfoTextBadge: {
     color : "red",
-    fontWeight: "bold"
+    fontWeight: "bold",
+    textAlign: "center"
   },
 
+  // Type and cousine column
   additionalInfoCol: {
     flex: 1,
     flexDirection: "column",
     paddingLeft: 20,
   },
+  
+
+  // Normal
+    // #2B3499
+    // #FF6C22
+    // #FF9209
+    // #FFD099
+
+    // Medium
+//    #6F74CC
+//    #FF9860
+//    #FFB956
+//    #FFEDC8
+  // Pastel
+    // #DCE0FF
+    // #FFB09E
+    // #FFD4A4
+    // #FFEAC7
 });
