@@ -5,6 +5,13 @@ IMAGE RESOURCES:
 * brick_wall.jpg: Image by Pexels from https://pixabay.com/photos/brick-wall-chairs-furniture-1834784/
 * old_china.jpg: Image by Markus Winkler from https://pixabay.com/photos/interior-design-restaurant-diner-6998378/
 * karo.jpg: Image by Pexels from https://pixabay.com/photos/restaurant-furniture-interiors-1837150/
+* pasta1.jpg: Image by Pexels from https://pixabay.com/photos/pasta-pesto-farfalle-pesto-pasta-1854245/
+* salad1.jpg: Image by Joanna Wielgosz from https://pixabay.com/photos/pasta-coriander-salad-food-dish-7209002/
+* pasta2.jpg: Image by Aline Ponce from https://pixabay.com/photos/pasta-spaghetti-food-italian-1463930/
+* pasta3.jpg: Image by Hans from https://pixabay.com/photos/tortellini-noodles-pasta-italian-357887/
+* desert1.jpg: Image by -Rita-👩‍🍳 und 📷 mit ❤ from https://pixabay.com/photos/strawberry-dessert-strawberries-2191973/ 
+* desert2.jpg: Image by -Rita-👩‍🍳 und 📷 mit ❤ from https://pixabay.com/photos/pancakes-schaumomelette-omelette-1984716/
+
 
 CODING RESOURCES: 
 * https://react.dev/learn/importing-and-exporting-components
@@ -24,7 +31,8 @@ import { createStackNavigator } from "@react-navigation/stack";
 import { TableView, Section, Cell } from "react-native-tableview-simple";
 import restaurantData from "./Restaurants_data";
 import { styles } from "./styles";
-import { field_height, field_width } from "./constants";
+import { field_width } from "./constants";
+import { FOOD_IMAGE_PATHS } from "./constants";
 
 const Stack = createStackNavigator();
 
@@ -32,14 +40,21 @@ const HomescreenCell = ({ navigation, ...props }) => (
   <Cell
     {...props}
     style={styles.rest_container}
-    title={<Text style={{...styles.menu_item_text_size, fontWeight: "bold"}}>{props.title}</Text>}
+    title={
+      <Text
+        style={{
+          ...styles.menu_item_text_size,
+          fontWeight: "bold",
+          color: "#2B3499",
+        }}
+      >
+        {props.title}
+      </Text>
+    }
     onPress={() =>
-      navigation.navigate("Menu", 
-      {
+      navigation.navigate("Menu", {
         items: props.menu,
-      }
-            
-      )
+      })
     }
   >
     <Image source={props.img} style={styles.image} />
@@ -57,10 +72,11 @@ const HomescreenCell = ({ navigation, ...props }) => (
           <Text style={styles.additionalInfoTextBadge}>{props.pricing}</Text>
         </View>
         <View style={styles.badge}>
-          <Text style={styles.additionalInfoTextBadge}>{props.delivery_time}</Text>
-          </View>
-      </View>  
-
+          <Text style={styles.additionalInfoTextBadge}>
+            {props.delivery_time}
+          </Text>
+        </View>
+      </View>
     </View>
   </Cell>
 );
@@ -72,7 +88,7 @@ const RestaurantsScreen = ({ navigation }) => (
         {/* iterate through restaurantData */}
         {restaurantData.map((data, index) => (
           <Section key={index} header="" sectionTintColor={"#FFEAC7"}>
-            <HomescreenCell navigation={navigation} {...data}/>
+            <HomescreenCell navigation={navigation} {...data} />
           </Section>
         ))}
       </TableView>
@@ -98,6 +114,14 @@ const FoodInformationScreen = ({ route }) => {
         <View style={styles.dish_health_field}>
           <Text style={styles.dish_health}>Health Index: {healthIndex}</Text>
         </View>
+        <Image
+          source={
+            Object.values(FOOD_IMAGE_PATHS)[
+              Math.floor(Math.random() * Object.values(FOOD_IMAGE_PATHS).length)
+            ]
+          }
+          style={styles.food_image}
+        />
       </ScrollView>
     </View>
   );
@@ -111,7 +135,15 @@ const MenuScreen = ({ route, navigation }) => {
       <ScrollView>
         <TableView>
           {items.map((category, index) => (
-            <Section key={index} header={<Text style={styles.menu_item_text_size}>{category.category}</Text>}>
+            <Section
+              key={index}
+              header={
+                <Text style={styles.menu_item_text_size}>
+                  {category.category}
+                </Text>
+              }
+              sectionTintColor={"#FFEAC7"}
+            >
               {category.items.map((item, itemIndex) => (
                 <TouchableOpacity
                   key={itemIndex}
@@ -124,7 +156,13 @@ const MenuScreen = ({ route, navigation }) => {
                     })
                   }
                 >
-                  <Cell title={<Text style={styles.menu_item_text_size}>{item.title}</Text>} />
+                  <Cell
+                    title={
+                      <Text style={styles.menu_item_text_size}>
+                        {item.title}
+                      </Text>
+                    }
+                  />
                 </TouchableOpacity>
               ))}
             </Section>
@@ -135,27 +173,28 @@ const MenuScreen = ({ route, navigation }) => {
   );
 };
 
-
 export default function App() {
   return (
-    <NavigationContainer style={{fontSize: 150}}>
-      <Stack.Navigator 
+    <NavigationContainer style={{ fontSize: 150 }}>
+      <Stack.Navigator
         screenOptions={{
           headerStyle: {
-            backgroundColor: '#FFEAC7', 
+            backgroundColor: "#FFEAC7",
           },
-          headerTintColor: '#2B3499',
+          headerTintColor: "#2B3499",
           headerTitleStyle: {
-            fontWeight: 'bold',
+            fontWeight: "bold",
             fontSize: field_width * 0.05,
           },
         }}
       >
-        <Stack.Screen name="Restaurants" component={RestaurantsScreen}/>
-        <Stack.Screen name="Menu" component={MenuScreen}/>
-        <Stack.Screen name="Food Information" component={FoodInformationScreen} />
+        <Stack.Screen name="Restaurants" component={RestaurantsScreen} />
+        <Stack.Screen name="Menu" component={MenuScreen} />
+        <Stack.Screen
+          name="Food Information"
+          component={FoodInformationScreen}
+        />
       </Stack.Navigator>
     </NavigationContainer>
   );
 }
-

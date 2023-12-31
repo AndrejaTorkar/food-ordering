@@ -129,12 +129,19 @@ export const styles = StyleSheet.create({
 
   dish_health: {
     color: "#2B3499",
-    fontSize: field_width * 0.05
-
+    fontSize: field_width * 0.05,
+    marginBottom: field_width * 0.15
   },
 
   menu_item_text_size: {
-    fontSize: field_width * 0.04
+    fontSize: field_width * 0.04,
+    color: "#2B3499"
+  },
+
+  food_image: {
+    width: "100%",
+    height: field_width * 0.8,
+    resizeMode: "cover", // Keep aspect ratio while covering the entire area
   },
 
   // Normal
@@ -144,10 +151,11 @@ export const styles = StyleSheet.create({
   // #FFD099
 
   // Medium
-  //    #6F74CC
-  //    #FF9860
-  //    #FFB956
-  //    #FFEDC8
+  // #6F74CC
+  // #FF9860
+  // #FFB956
+  // #FFEDC8
+  
   // Pastel
   // #DCE0FF
   // #FFB09E
