@@ -1,3 +1,4 @@
+// aTorkar started writing code
 import { IMAGE_PATHS } from "./constants";
 
 let restaurantData = [
@@ -240,3 +241,4 @@ let restaurantData = [
 ];
 
 export default restaurantData;
+// aTorkar finished writing code

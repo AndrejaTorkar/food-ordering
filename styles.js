@@ -1,3 +1,5 @@
+// aTorkar started writing code
+
 import { StyleSheet } from "react-native";
 import { field_height, field_width } from "./constants";
 
@@ -161,4 +163,6 @@ export const styles = StyleSheet.create({
   // #FFB09E
   // #FFD4A4
   // #FFEAC7
+
+  // aTorkar finished writing code
 });

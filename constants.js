@@ -1,3 +1,4 @@
+// aTorkar started writing code
 import { Dimensions } from 'react-native';
 
 
@@ -24,3 +25,4 @@ export let field_height = Dimensions.get('window').height;
 
 
 export default {IMAGE_PATHS, FOOD_IMAGE_PATHS, field_height, field_width};
+// aTorkar finished writing code

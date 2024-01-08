@@ -35,7 +35,7 @@ import { field_width } from "./constants";
 import { FOOD_IMAGE_PATHS } from "./constants";
 
 const Stack = createStackNavigator();
-
+// aTorkar started writing code
 const HomescreenCell = ({ navigation, ...props }) => (
   <Cell
     {...props}
@@ -172,9 +172,10 @@ const MenuScreen = ({ route, navigation }) => {
     </View>
   );
 };
-
+// aTorkar finished writing code
 export default function App() {
   return (
+    // aTorkar started writing code
     <NavigationContainer style={{ fontSize: 150 }}>
       <Stack.Navigator
         screenOptions={{
@@ -198,3 +199,4 @@ export default function App() {
     </NavigationContainer>
   );
 }
+// aTorkar finished writing code
